@@ -12,6 +12,7 @@ import os.path
 import uuid
 import jdatetime
 from pycket.session import SessionManager
+from scipy.odr.__odrpack import odr_stop
 from models import *
 import random
 
@@ -149,9 +150,9 @@ class register_Handler(TornadoRequestBase):
                 original_fname = file['filename']
                 type_image = original_fname.split(".")[-1]
                 address_image = str(uuid.uuid4()) + ".jpg"
-                file2 = "static/upload/user_images/"
+                file2 = "/var/ftm/static/upload/user_images/"
                 if not os.path.exists(file2): os.makedirs(file2)
-                output_file = open("static/upload/user_images/" + address_image, 'wb')
+                output_file = open(os.path.join(file2,address_image) + address_image, 'wb')
                 output_file.write(file['body'])
             except:
                 bool_acept = True
