@@ -17,7 +17,7 @@ class UploadImageUserHandler(TornadoRequestBase):
     def post(self, *args, **kwargs):
         picture_address = self.user['picture_address']
         file = self.request.files['file'][0]
-        file2 = "/var/ftm/static/upload/user_images/"
+        file2 = "static/upload/user_images/"
         if not os.path.exists(file2): os.makedirs(file2)
         output_file = open("static/upload/user_images/" + picture_address, 'wb')
         output_file.write(file['body'])
